@@ -1,0 +1,28 @@
+<h1><%= @student.name %></h1>
+
+<% if @current_student && @current_student == @student %>
+  <p><%= link_to 'Logout', logout_path, method: :delete %></p>
+<% else %>
+  <p><%= link_to 'Login', login_path %></p>
+<% end %>
+
+<h2>Enrolled Courses</h2>
+<ul>
+  <% @student.courses.each do |course| %>
+    <li><%= link_to course.name, course_path(course) %></li>
+  <% end %>
+</ul>
+
+<% if @current_student && @current_student == @student %>
+  <h2>Available Courses</h2>
+  <ul>
+    <% Course.all.each do |course| %>
+      <li>
+        <%= link_to course.name, course_path(course) %>
+	<%= link_to 'Enroll', enroll_course_path(course), method: :post %>
+	<%= link_to 'Drop', drop_course_path(course), method: :delete %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+

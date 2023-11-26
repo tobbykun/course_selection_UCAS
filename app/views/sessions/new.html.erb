@@ -1,0 +1,9 @@
+<h1>Login</h1>
+
+<%= form_with(url: sessions_path, method: :post) do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :session_name %>
+
+  <%= f.submit 'Login' %>
+<% end %>
+
